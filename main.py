@@ -30,7 +30,7 @@ def forcast():
   f = x["hourly"]
   f["city"] = "oran"
   return f
-@app.get('/salat/{day}')
+@app.get('/salat/{day}/')
 def salat(day):
   import requests
    response = requests.get("http://api.aladhan.com/v1/calendar?latitude=35.6976541&longitude=-0.6337376&method=5&month=1&year=2022")
