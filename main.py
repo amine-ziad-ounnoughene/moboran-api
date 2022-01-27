@@ -13,7 +13,7 @@ def weather():
     return {"lat":dict(x["coord"])['lat'],"lon":dict(x["coord"])['lon']
     ,"description":dict(x["weather"][0])['description'],"icon":"https://openweathermap.org/img/wn/" + str(dict(x["weather"][0])['icon'] ) + "@2x.png",
     "temp-celsius":round(dict(x['main'])['temp']-273),"humidity_%":dict(x['main'])['humidity'],
-    "wind-speed-m/s":dict(x["wind"])["speed"]} , "pressure" : dict(response.json())["main"]['pressure']
+    "wind-speed-m/s":dict(x["wind"])["speed"] , "pressure" : dict(response.json())["main"]['pressure']}
 @app.get("/covid")
 def covid():
   url = "https://api.corona-dz.live/province/31/latest"
