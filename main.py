@@ -21,9 +21,9 @@ def covid():
   url = "https://api.corona-dz.live/country/latest"
   response = requests.get(url)
   x = dict(response.json())
-  return {'newConfirmed':x["newConfirmed"],
+  return JSONResponse(content=jsonable_encoder({'newConfirmed':x["newConfirmed"],
           'newRecovered': x['newRecovered'],
-          'newDeaths':x['newDeaths']}
+          'newDeaths':x['newDeaths']}))
 @app.get('/forcast')
 def forcast():
   url = "https://api.open-meteo.com/v1/forecast?latitude=35.69&longitude=-0.63&hourly=temperature_2m,relativehumidity_2m&windspeed_unit=ms&timezone=Europe%2FLondon"
@@ -31,7 +31,7 @@ def forcast():
   x = dict(response.json())
   f = x["hourly"]
   f["city"] = "oran"
-  return f
+  return JSONResponse(content=jsonable_encoder(f))
 @app.get('/salat')
 def salat():
   import requests
@@ -41,4 +41,4 @@ def salat():
   response = requests.get("http://api.aladhan.com/v1/calendar?latitude=35.6976541&longitude=-0.6337376&method=5&month=1&year=2022")
   for i in list(response.json()["data"]):
       if i["date"]["readable"][:2] == day:
-          return i["timings"]
+          return JSONResponse(content=jsonable_encoder(i["timings"]))
