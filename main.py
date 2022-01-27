@@ -33,7 +33,7 @@ def forcast():
 @app.get('/salat/{day}/')
 def salat(day):
   import requests
-   response = requests.get("http://api.aladhan.com/v1/calendar?latitude=35.6976541&longitude=-0.6337376&method=5&month=1&year=2022")
-   for i in list(response.json()["data"]):
+  response = requests.get("http://api.aladhan.com/v1/calendar?latitude=35.6976541&longitude=-0.6337376&method=5&month=1&year=2022")
+  for i in list(response.json()["data"]):
       if i["date"]["readable"][:2] == day:
           return i["timings"]
