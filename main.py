@@ -11,7 +11,7 @@ def weather():
   x = dict(response.json())
   if x["cod"] != "404":
     return {"lat":dict(x["coord"])['lat'],"lon":dict(x["coord"])['lon']
-    ,"description":dict(x["weather"][0])['description'],"icon":dict(x["weather"][0])['icon'] + ".png",
+    ,"description":dict(x["weather"][0])['description'],"icon":"https://openweathermap.org/img/wn/" + str(dict(x["weather"][0])['icon'] ) + "@2x.png",
     "temp-celsius":round(dict(x['main'])['temp']-273),"humidity_%":dict(x['main'])['humidity'],
     "wind-speed-m/s":dict(x["wind"])["speed"]}
 @app.get("/covid")
