@@ -30,7 +30,7 @@ def forcast():
   f = x["hourly"]
   f["city"] = "oran"
   return f
-@app.get('/salat/')
+@app.get('/salat')
 def salat():
   import requests
   from datetime import date
