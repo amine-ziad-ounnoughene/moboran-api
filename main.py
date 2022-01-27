@@ -30,9 +30,12 @@ def forcast():
   f = x["hourly"]
   f["city"] = "oran"
   return f
-@app.get('/salat/{day}/')
-def salat(day):
+@app.get('/salat/')
+def salat():
   import requests
+  from datetime import date
+  today = date.today()
+  day = today.strftime("%d/%m/%Y")[:2]
   response = requests.get("http://api.aladhan.com/v1/calendar?latitude=35.6976541&longitude=-0.6337376&method=5&month=1&year=2022")
   for i in list(response.json()["data"]):
       if i["date"]["readable"][:2] == day:
