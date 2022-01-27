@@ -16,12 +16,12 @@ def weather():
     "wind-speed-m/s":dict(x["wind"])["speed"] , "pressure" : dict(response.json())["main"]['pressure']}
 @app.get("/covid")
 def covid():
-  url = "https://api.corona-dz.live/province/31/latest"
+  url = "https://api.corona-dz.live/country/latest"
   response = requests.get(url)
-  x = list(response.json())
-  return {'newConfirmed':dict(list(dict(x[0])["data"])[0])["newConfirmed"],
-          'newRecovered': dict(list(dict(x[0])["data"])[0])['newRecovered'],
-          'newDeaths':dict(list(dict(x[0])["data"])[0])['newDeaths']}
+  x = dict(response.json())
+  return {'newConfirmed':x["newConfirmed"],
+          'newRecovered': x['newRecovered'],
+          'newDeaths':x['newDeaths']}
 @app.get('/forcast')
 def forcast():
   url = "https://api.open-meteo.com/v1/forecast?latitude=35.69&longitude=-0.63&hourly=temperature_2m,relativehumidity_2m&windspeed_unit=ms&timezone=Europe%2FLondon"
