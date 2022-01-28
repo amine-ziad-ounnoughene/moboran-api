@@ -22,7 +22,7 @@ def weather():
   if x["cod"] != "404":
     return JSONResponse(content=jsonable_encoder({"lat":dict(x["coord"])['lat'],"lon":dict(x["coord"])['lon']
     ,"description":dict(x["weather"][0])['description'],"icon":"https://openweathermap.org/img/wn/" + str(dict(x["weather"][0])['icon'] ) + "@2x.png",
-    "temp":round(dict(x['main'])['temp']-273),"humidity_%":dict(x['main'])['humidity'],
+    "temp":round(dict(x['main'])['temp']-273),"humidity":dict(x['main'])['humidity'],
     "wind":dict(x["wind"])["speed"] , "pressure" : dict(response.json())["main"]['pressure']}))
 @app.get("/covid")
 def covid():
